@@ -2,6 +2,8 @@ import {useEffect, useState } from 'react'
 import axios from 'axios';
 import './App.css'
 import Dashboard from './Admin/Dashboard';
+import LandingPage from './Client/LandingPage';
+import NavBar from './Client/NavBar';
 
 function App() {
   const [customers,setCustomers]= useState(null);
@@ -21,7 +23,9 @@ function App() {
 
   return (
     <>
-    <Dashboard users={customers} setUsers={setCustomers}/>
+    {/* <Dashboard users={customers} setUsers={setCustomers}/> */}
+    {/* <LandingPage/> */}
+    <NavBar/>
     </>
   )
 }

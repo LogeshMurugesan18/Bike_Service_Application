@@ -119,14 +119,14 @@ const Dashboard = (props) => {
       </table>
       <h1>{editingUser ? 'Edit Details' : 'Add Details'}</h1>
       <form onSubmit={handleSubmit}>
-        <input type="text" value={vehiclenum} onChange={(e) => setVehiclenum(e.target.value)} placeholder='Eg:TN 00 AA 0000' /><br />
-        <input type="text" value={vehiclemodel} onChange={(e) => setVehiclemodel(e.target.value)} placeholder='Eg:Yamaha R15' /><br />
-        <input type="text" value={customername} onChange={(e) => setCustomername(e.target.value)} placeholder='Customer Name' /><br />
-        <input type="text" value={mobile} onChange={(e) => setMobile(e.target.value)} placeholder='Mobile no' /><br />
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email Id' /><br />
-        <input type="text" value={complaint} onChange={(e) => setComplaint(e.target.value)} placeholder='Complaint' /><br />
-        <input type="text" value={date} onChange={(e) => setDate(e.target.value)} placeholder='Date' /><br />
-        <input type="text" value={status} onChange={(e) => setStatus(e.target.value)} placeholder='Status' /><br />
+        <h4>Vehicle Number</h4><input type="text" value={vehiclenum} onChange={(e) => setVehiclenum(e.target.value)} placeholder='Eg:TN 00 AA 0000' /><br />
+        <h4>Vehicle Model</h4><input type="text" value={vehiclemodel} onChange={(e) => setVehiclemodel(e.target.value)} placeholder='Eg:Yamaha R15' /><br />
+        <h4>Customer Name</h4><input type="text" value={customername} onChange={(e) => setCustomername(e.target.value)} placeholder='Name in Caps' /><br />
+        <h4>Mobile Number</h4><input type="text" value={mobile} onChange={(e) => setMobile(e.target.value)} placeholder='xxxxxxxxxx' /><br />
+        <h4>Email Id</h4><input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Eg:abc@gmail.com' /><br />
+        <h4>Complaint</h4><input type="text" value={complaint} onChange={(e) => setComplaint(e.target.value)} placeholder='Eg:General Service' /><br />
+        <h4>Date</h4><input type="text" value={date} onChange={(e) => setDate(e.target.value)} placeholder='DD/MM/YYYY' /><br />
+        <h4>Status</h4><input type="text" value={status} onChange={(e) => setStatus(e.target.value)} placeholder='Current Status' /><br />
         <button type='submit'>{editingUser ? 'Update Data' : 'Add Data'}</button>
       </form>
     </>
