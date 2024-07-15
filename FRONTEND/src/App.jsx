@@ -4,6 +4,7 @@ import './App.css'
 import Dashboard from './Admin/Dashboard';
 import LandingPage from './Client/LandingPage';
 import NavBar from './Client/NavBar';
+import Footer from './Client/Footer';
 
 function App() {
   const [customers,setCustomers]= useState(null);
@@ -26,6 +27,7 @@ function App() {
     {/* <Dashboard users={customers} setUsers={setCustomers}/> */}
     {/* <LandingPage/> */}
     <NavBar/>
+    <Footer/>
     </>
   )
 }

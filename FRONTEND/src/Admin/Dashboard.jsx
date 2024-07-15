@@ -74,7 +74,7 @@ const Dashboard = (props) => {
 
   return (
     <>
-      <h1>Customer List</h1>
+      <h1 id='title'>Customer List</h1>
       <div>
         <label>Filter by Status: </label>
         <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
