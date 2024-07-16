@@ -5,6 +5,7 @@ function NavBar() {
       <nav className="navbar">
   <div className="navbar-left">
     <a href="/" className="name">
+    
       PISTON DOC
     </a>
   </div>
