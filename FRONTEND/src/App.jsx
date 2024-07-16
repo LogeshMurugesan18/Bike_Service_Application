@@ -28,6 +28,7 @@ function App() {
     {/* <LandingPage/> */}
     <NavBar/>
     <Footer/>
+    <LandingPage/>
     </>
   )
 }
