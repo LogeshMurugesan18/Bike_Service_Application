@@ -35,11 +35,11 @@ function LandingPage() {
 At Piston Doc, we get it—your bike is more than just a way to get around. 
 It's your daily companion, your adventure partner, and a reflection of who you are. 
 That's why we take pride in offering top-notch bike service that keeps you moving smoothly and safely.
- Our team of skilled and certified mechanics treats every bike with the care and expertise it deserves,
-  using the latest tools and techniques to fix any issues. Whether you need a quick tune-up, a 
-  thorough maintenance check, or a tricky repair, we've got you covered. We believe in clear pricing, 
-  friendly service, and making things easy for you with flexible scheduling options. Choose Piston Doc, 
-  and ride with peace of mind knowing your bike is in great hands.
+Our team of skilled and certified mechanics treats every bike with the care and expertise it deserves,
+using the latest tools and techniques to fix any issues. Whether you need a quick tune-up, a 
+thorough maintenance check, or a tricky repair, we've got you covered. We believe in clear pricing, 
+friendly service, and making things easy for you with flexible scheduling options. Choose Piston Doc, 
+and ride with peace of mind knowing your bike is in great hands.
 </p>
     </div>
  
