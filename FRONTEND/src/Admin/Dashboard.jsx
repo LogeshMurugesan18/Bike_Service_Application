@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import './Dashboard.css';
 const Dashboard = (props) => {
   const { users, setUsers } = props;
 
@@ -13,6 +13,7 @@ const Dashboard = (props) => {
   const [complaint, setComplaint] = useState("");
   const [date, setDate] = useState("");
   const [status, setStatus] = useState("");
+  const [amount,setAmount] = useState("");
   const [editId, setEditId] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
 
@@ -33,6 +34,7 @@ const Dashboard = (props) => {
     setDate(user.date);
     setComplaint(user.complaint);
     setStatus(user.status);
+    setAmount(user.amount);
     setEditId(user._id);
   };
 
@@ -47,7 +49,8 @@ const Dashboard = (props) => {
       email,
       date,
       complaint,
-      status
+      status,
+      amount
     };
  
       if (!editingUser) {
@@ -67,6 +70,7 @@ const Dashboard = (props) => {
       setDate("");
       setComplaint("");
       setStatus("");
+      setAmount("");
       setEditId("");
   };
 
@@ -75,7 +79,7 @@ const Dashboard = (props) => {
   return (
     <>
       <h1 id='title'>Customer List</h1>
-      <div>
+      <div className='filterbar'>
         <label>Filter by Status: </label>
         <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
           <option value="all">All</option>
@@ -95,6 +99,7 @@ const Dashboard = (props) => {
             <th>Complaint</th>
             <th>Date</th>
             <th>Status</th>
+            <th>&#8377;Amount</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -109,6 +114,7 @@ const Dashboard = (props) => {
               <td>{user.complaint}</td>
               <td>{user.date}</td>
               <td>{user.status}</td>
+              <td>{user.amount}</td>
               <td>
                 <button onClick={() => deleteUser(user._id)}>Delete</button>
                 <button onClick={() => editUser(user)}>Edit</button>
@@ -117,7 +123,7 @@ const Dashboard = (props) => {
           ))}
         </tbody>
       </table>
-      <h1>{editingUser ? 'Edit Details' : 'Add Details'}</h1>
+      <h1 className='formhead'>{editingUser ? 'Edit Details' : 'Add Details'}</h1>
       <form onSubmit={handleSubmit}>
         <h4>Vehicle Number</h4><input type="text" value={vehiclenum} onChange={(e) => setVehiclenum(e.target.value)} placeholder='Eg:TN 00 AA 0000' /><br />
         <h4>Vehicle Model</h4><input type="text" value={vehiclemodel} onChange={(e) => setVehiclemodel(e.target.value)} placeholder='Eg:Yamaha R15' /><br />
@@ -127,6 +133,7 @@ const Dashboard = (props) => {
         <h4>Complaint</h4><input type="text" value={complaint} onChange={(e) => setComplaint(e.target.value)} placeholder='Eg:General Service' /><br />
         <h4>Date</h4><input type="text" value={date} onChange={(e) => setDate(e.target.value)} placeholder='DD/MM/YYYY' /><br />
         <h4>Status</h4><input type="text" value={status} onChange={(e) => setStatus(e.target.value)} placeholder='Current Status' /><br />
+        <h4>Amount</h4><input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder='Amount in Rupees' /><br />
         <button type='submit'>{editingUser ? 'Update Data' : 'Add Data'}</button>
       </form>
     </>

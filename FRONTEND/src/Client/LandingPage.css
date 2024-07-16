@@ -1,36 +1,45 @@
 /* Nav bar */
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #c3cfcf;
-    padding: 1rem;
-  }
-  
-  .navbar-left .name {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #0e0d0e;
-    text-decoration: none;
-  }
-  
-  .navbar-right .nav-links {
-    list-style-type: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar-right .nav-links li {
-    margin-right: 1rem;
-  }
-  
-  .navbar-right .nav-links a {
-    color: #151313;
-    text-decoration: none;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #c3cfcf;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.navbar-left .name {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0e0d0e;
+  text-decoration: none;
+}
+
+.logo {
+  width: 30px;  
+  height: 30px; 
+  margin-right: 10px;
+}
+
+.navbar-right .nav-links {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-right .nav-links li {
+  margin-right: 1rem;
+}
+
+.navbar-right .nav-links a {
+  color: #151313;
+  text-decoration: none;
+}
+
 
 
   /* Footer */
@@ -78,23 +87,50 @@
 
  /* caurosel */
 
+
+
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 50px 100px 0;
+}
+
 .carousel-container {
-  width: 550px;  
-  height: 550px; 
-  margin: 0 auto;  
-  margin-top: 50px;
-  margin-inline-start: 100px;
+  width: 50%;
 }
 
 .carousel .slide img {
-  width: 100%;  
-  height: 100%; 
-  object-fit: cover; 
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
-.landingpara{
-  
+/* WHY Us? */
+
+.landingpara {
+  width: 45%;
   text-align: justify;
-  text-transform:initial;
-  text-decoration: solid;
 }
+
+.book-now {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color:black;
+  background-color: #5fb8b8;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.book-now:hover {
+  background-color: #00b37d;
+}
+

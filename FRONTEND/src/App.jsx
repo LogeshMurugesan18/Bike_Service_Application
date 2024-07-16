@@ -24,11 +24,11 @@ function App() {
 
   return (
     <>
-    {/* <Dashboard users={customers} setUsers={setCustomers}/> */}
+    <Dashboard users={customers} setUsers={setCustomers}/>
     {/* <LandingPage/> */}
-    <NavBar/>
+    {/* <NavBar/>
     <Footer/>
-    <LandingPage/>
+    <LandingPage/> */}
     </>
   )
 }

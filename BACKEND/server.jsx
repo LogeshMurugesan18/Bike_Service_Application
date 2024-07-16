@@ -15,6 +15,7 @@ const CustomerSchema =  new mongoose.Schema({
   complaint:{type: String, required:true},
   date:{type: String, required:true},
   status:{type: String, required:true},
+  amount:{type:String,required:true},
 });
 let Customers =mongoose.model("Customers",CustomerSchema)
 app.use(express.json());
@@ -26,8 +27,8 @@ app.get('/data', async function(req,res){
   
 });
 app.post('/api',(req,res)=>{
-   const {vehiclenum,vehiclemodel,customername,mobile,email,complaint,date,status}=req.body;
-  const newcust=new Customers({vehiclenum,vehiclemodel,customername,mobile,email,complaint,date,status});
+   const {vehiclenum,vehiclemodel,customername,mobile,email,complaint,date,status,amount}=req.body;
+  const newcust=new Customers({vehiclenum,vehiclemodel,customername,mobile,email,complaint,date,status,amount});
   newcust.save();
   res.status(200).json(newcust);
 })
