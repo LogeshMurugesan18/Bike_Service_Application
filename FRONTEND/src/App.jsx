@@ -6,6 +6,8 @@ import LandingPage from './Client/LandingPage';
 import NavBar from './Client/NavBar';
 import Footer from './Client/Footer';
 import AboutUs from './Client/AboutUs';
+import AddService from './Admin/Add';
+import ServicePage from './Client/Home';
 
 function App() {
   const [customers,setCustomers]= useState(null);
@@ -29,7 +31,9 @@ function App() {
     {/* <NavBar/>
     <Footer/>
     <LandingPage/> */}
-    <AboutUs/>
+    {/* <AboutUs/> */}
+    {/* <AddService/> */}
+    <ServicePage/>
     </>
   )
 }
