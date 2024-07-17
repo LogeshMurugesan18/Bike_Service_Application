@@ -8,8 +8,11 @@ import Footer from './Client/Footer';
 import AboutUs from './Client/AboutUs';
 import AddService from './Admin/Add';
 import ServicePage from './Client/Home';
+import Login from '../Login/Login';
+import SignUp from '../Login/Signup';
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState(null);
   const [customers,setCustomers]= useState(null);
  useEffect(()=>{
    const fetchData=async()=>{
@@ -24,6 +27,7 @@ function App() {
    fetchData();
  },[]);
  console.log({customers});
+ 
 
   return (
     <>
@@ -33,7 +37,10 @@ function App() {
     <LandingPage/> */}
     {/* <AboutUs/> */}
     {/* <AddService/> */}
-    <ServicePage/>
+    {/* <ServicePage/> */}
+    {/* <Login/> */}
+    {/* <SignUp/> */}
+      <Dashboard/>
     </>
   )
 }
