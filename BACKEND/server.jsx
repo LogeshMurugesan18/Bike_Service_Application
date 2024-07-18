@@ -89,8 +89,18 @@ const ServiceSchema = new mongoose.Schema({
   servicePrice: { type: String, required: true },
 });
 
+const SignupDetailsSchema = new mongoose.Schema({
+  vehiclenum: { type: String, required: true },
+  vehiclemodel: { type: String, required: true },
+  customername: { type: String, required: true },
+  mobile: { type: String, required: true },
+  email: { type: String, required: true },
+  status: { type: String, required: true },
+});
+
 let Customers = mongoose.model("Customers", CustomerSchema);
 let Service = mongoose.model("Service", ServiceSchema);
+let SignupDetails = mongoose.model("SignupDetails", SignupDetailsSchema);
 
 app.use(express.json());
 
@@ -125,12 +135,6 @@ app.get('/anotherdata', async function (req, res) {
   res.json(ServiceData);
 });
 
-// app.post('/anotherapi', (req, res) => {
-//   const { url, serviceName, servicePrice } = req.body;
-//   const newEntry = new Service({ url, serviceName, servicePrice });
-//   newEntry.save();
-//   res.status(200).json(newEntry);
-// });
 
 app.post('/anotherapi', (req, res) => {
   const { url, serviceName, servicePrice } = req.body;
@@ -153,6 +157,63 @@ app.delete("/anotherapi/:id", async (req, res) => {
   const entryToDelete = await Service.findByIdAndDelete(_id, req.body);
   if (!entryToDelete) return res.status(404).send("No data to delete in this id");
   res.status(200).send("Content Deleted");
+});
+
+
+
+
+app.post('/signup', async (req, res) => {
+  try {
+    const { vehiclenum, vehiclemodel, customername, mobile, email, status } = req.body;
+    const newSignup = new SignupDetails({ vehiclenum, vehiclemodel, customername, mobile, email, status });
+    await newSignup.save();
+    res.status(201).json(newSignup);
+  } catch (error) {
+    res.status(400).json({ message: "Signup failed", error });
+  }
+});
+
+
+app.post('/login', async (req, res) => {
+  try {
+    const { email, mobile } = req.body;
+    const user = await SignupDetails.findOne({ email, mobile });
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(400).json({ message: "Invalid email or mobile number" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: "Login failed", error });
+  }
+});
+
+app.post('/bookservice', async (req, res) => {
+  try {
+    const { email, mobile, serviceId } = req.body;
+    const service = await Service.findById(serviceId);
+    if (!service) {
+      return res.status(404).json({ message: "Service not found" });
+    }
+
+    const customer = await Customers.findOneAndUpdate(
+      { email, mobile },
+      {
+        $set: {
+          vehiclenum: service.vehiclenum,
+          vehiclemodel: service.vehiclemodel,
+          customername: service.customername,
+          status: "Booked",
+          amount: service.servicePrice,
+        }
+      },
+      { new: true, upsert: true }
+    );
+
+    res.status(200).json(customer);
+  } catch (error) {
+    res.status(400).json({ message: "Service booking failed", error });
+  }
 });
 
 app.listen(3003, () => {

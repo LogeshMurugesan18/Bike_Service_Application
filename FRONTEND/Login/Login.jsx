@@ -1,3 +1,38 @@
+// import React, { useState } from 'react';
+// import axios from 'axios';
+// import './Login.css';
+
+// const Login = ({ setLoggedInUser }) => {
+//   const [email, setEmail] = useState("");
+//   const [mobile, setMobile] = useState("");
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     try {
+//       const response = await axios.post("http://localhost:3003/login", { email, mobile });
+//       setLoggedInUser(response.data);
+//       console.log("Login successful:", response.data);
+//     } catch (error) {
+//       console.error("Login error:", error.response.data);
+//     }
+//   };
+
+//   return (
+//     <div className="auth-container">
+//       <h1>Login</h1>
+//       <form onSubmit={handleSubmit}>
+//         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' required />
+//         <input type="text" value={mobile} onChange={(e) => setMobile(e.target.value)} placeholder='Mobile Number' required />
+//         <button type="submit">Login</button>
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default Login;
+
+
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
@@ -13,7 +48,16 @@ const Login = ({ setLoggedInUser }) => {
       setLoggedInUser(response.data);
       console.log("Login successful:", response.data);
     } catch (error) {
-      console.error("Login error:", error.response.data);
+      if (error.response) {
+        // Server responded with a status other than 200 range
+        console.error("Login error:", error.response.data);
+      } else if (error.request) {
+        // Request was made but no response was received
+        console.error("No response received:", error.request);
+      } else {
+        // Something else happened
+        console.error("Error setting up the request:", error.message);
+      }
     }
   };
 

@@ -38,9 +38,9 @@ function App() {
     {/* <LandingPage/> */}
     {/* <AboutUs/> */}
     {/* <AddService/> */}
-    {/* <ServicePage/> */}
-    {/* <Login/>
-    <SignUp/> */}
+    <ServicePage/>
+    {/* <Login setLoggedInUser={setLoggedInUser} /> */}
+    {/* <SignUp/> */}
       {/* <Router>
       <NavBar />
       <Routes>
