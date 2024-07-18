@@ -37,10 +37,9 @@ function App() {
     <LandingPage/> */}
     {/* <AboutUs/> */}
     {/* <AddService/> */}
-    {/* <ServicePage/> */}
+    <ServicePage/>
     {/* <Login/> */}
     {/* <SignUp/> */}
-      <Dashboard/>
     </>
   )
 }

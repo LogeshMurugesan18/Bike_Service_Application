@@ -59,14 +59,9 @@ var cors = require('cors');
 app.use(cors());
 const mongoose = require('mongoose');
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/Bike-Service-Application').then(() => {
+mongoose.connect('mongodb://localhost:27017/Bike-Service-Spplication').then(() => {
   console.log("Connected to MongoDB");
 });
-
-// Define Mongoose Schemas
-// models/Customer.js
-
 
 const CustomerSchema = new mongoose.Schema({
   vehiclenum: { type: String, required: true },
@@ -74,16 +69,11 @@ const CustomerSchema = new mongoose.Schema({
   customername: { type: String, required: true },
   mobile: { type: String, required: true },
   email: { type: String, required: true },
+  complaint: { type: String, required: true },
+  date: { type: String, required: true },
   status: { type: String, required: true },
-  servicePackage: { 
-    packageName: { type: String },
-    packagePrice: { type: String },
-    packageUrl: { type: String },
-  },
+  amount: { type: String, required: true },
 });
-
-const Customer = mongoose.model("Customer", CustomerSchema);
-module.exports = Customer;
 
 const ServiceSchema = new mongoose.Schema({
   url: { type: String, required: true },
@@ -91,57 +81,61 @@ const ServiceSchema = new mongoose.Schema({
   servicePrice: { type: String, required: true },
 });
 
-// Create Mongoose Models
 let Customers = mongoose.model("Customers", CustomerSchema);
-let Services = mongoose.model("Services", ServiceSchema);
+let Service = mongoose.model("Service", ServiceSchema);
 
-// Middleware
 app.use(express.json());
 
-// API Endpoints
-// ... (your API routes go here)
-// Signup
-app.post('/signup', async (req, res) => {
-  const { vehiclenum, vehiclemodel, customername, mobile, email, status } = req.body;
-  const newCustomer = new Customers({ vehiclenum, vehiclemodel, customername, mobile, email, status });
-  try {
-    const savedCustomer = await newCustomer.save();
-    res.status(201).json(savedCustomer);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
+app.get('/data', async function (req, res) {
+  const cust = await Customers.find();
+  res.json(cust);
 });
 
-// Login
-app.post('/login', async (req, res) => {
-  const { email, mobile } = req.body;
-  const customer = await Customers.findOne({ email, mobile });
-  if (customer) {
-    res.json(customer);
-  } else {
-    res.status(400).json({ message: 'Invalid credentials' });
-  }
+app.post('/api', (req, res) => {
+  const { vehiclenum, vehiclemodel, customername, mobile, email, complaint, date, status, amount } = req.body;
+  const newcust = new Customers({ vehiclenum, vehiclemodel, customername, mobile, email, complaint, date, status, amount });
+  newcust.save();
+  res.status(200).json(newcust);
 });
 
-// Get all services
+app.put("/api/:id", async (req, res) => {
+  let _id = req.params.id;
+  const custToUpdate = await Customers.findByIdAndUpdate(_id, req.body);
+  if (!custToUpdate) return res.status(404).send("No customer found with the id");
+  res.status(200).send("Content modified");
+});
+
+app.delete("/api/:id", async (req, res) => {
+  let _id = req.params.id;
+  const custToDelete = await Customers.findByIdAndDelete(_id, req.body);
+  if (!custToDelete) return res.status(404).send("No data to delete in this id");
+  res.status(200).send("Content Deleted");
+});
+
 app.get('/anotherdata', async function (req, res) {
-  const serviceData = await Services.find();
-  res.json(serviceData);
+  const ServiceData = await Service.find();
+  res.json(ServiceData);
 });
 
-// Update customer with service package
-app.post('/updateCustomerWithService', async (req, res) => {
-  const { email, mobile, servicePackage } = req.body;
-  const customer = await Customers.findOneAndUpdate(
-    { email, mobile },
-    { servicePackage },
-    { new: true }
-  );
-  if (customer) {
-    res.json(customer);
-  } else {
-    res.status(400).json({ message: 'Customer not found' });
-  }
+app.post('/anotherapi', (req, res) => {
+  const { url, serviceName, servicePrice } = req.body;
+  const newEntry = new Service({ url, serviceName, servicePrice });
+  newEntry.save();
+  res.status(200).json(newEntry);
+});
+
+app.put("/anotherapi/:id", async (req, res) => {
+  let _id = req.params.id;
+  const entryToUpdate = await Service.findByIdAndUpdate(_id, req.body);
+  if (!entryToUpdate) return res.status(404).send("No entry found with the id");
+  res.status(200).send("Content modified");
+});
+
+app.delete("/anotherapi/:id", async (req, res) => {
+  let _id = req.params.id;
+  const entryToDelete = await Service.findByIdAndDelete(_id, req.body);
+  if (!entryToDelete) return res.status(404).send("No data to delete in this id");
+  res.status(200).send("Content Deleted");
 });
 
 app.listen(3003, () => {
