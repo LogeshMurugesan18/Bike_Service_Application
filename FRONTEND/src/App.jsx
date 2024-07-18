@@ -1,5 +1,6 @@
 import {useEffect, useState } from 'react'
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css'
 import Dashboard from './Admin/Dashboard';
 import LandingPage from './Client/LandingPage';
@@ -31,15 +32,28 @@ function App() {
 
   return (
     <>
-    {/* <Dashboard users={customers} setUsers={setCustomers}/> */}
-    {/* <NavBar/>
-    <Footer/>
-    <LandingPage/> */}
+    {/* <Dashboard users={customers} setUsers={setCustomers}/>  */}
+    {/* <NavBar/> */}
+    {/* <Footer/> */}
+    {/* <LandingPage/> */}
     {/* <AboutUs/> */}
     {/* <AddService/> */}
-    <ServicePage/>
-    {/* <Login/> */}
-    {/* <SignUp/> */}
+    {/* <ServicePage/> */}
+    {/* <Login/>
+    <SignUp/> */}
+      {/* <Router>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/aboutus" element={<AboutUs />} />
+        {/* <Route path="/services" element={<ServicePage />} />
+        <Route path="/add-service" element={<AddService />} />
+        <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser} />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/dashboard" element={<Dashboard users={customers} setUsers={setCustomers} />} /> */}
+      {/* </Routes>
+      <Footer />
+    </Router> */} 
     </>
   )
 }

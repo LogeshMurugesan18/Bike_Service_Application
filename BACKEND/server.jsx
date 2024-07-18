@@ -59,8 +59,16 @@ var cors = require('cors');
 app.use(cors());
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/Bike-Service-Spplication').then(() => {
+// mongoose.connect('mongodb://localhost:27017/Bike-Service-Spplication').then(() => {
+//   console.log("Connected to MongoDB");
+// });
+mongoose.connect('mongodb://localhost:27017/Bike-Service-Application', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
   console.log("Connected to MongoDB");
+}).catch((err) => {
+  console.error("Error connecting to MongoDB", err);
 });
 
 const CustomerSchema = new mongoose.Schema({
@@ -117,12 +125,21 @@ app.get('/anotherdata', async function (req, res) {
   res.json(ServiceData);
 });
 
+// app.post('/anotherapi', (req, res) => {
+//   const { url, serviceName, servicePrice } = req.body;
+//   const newEntry = new Service({ url, serviceName, servicePrice });
+//   newEntry.save();
+//   res.status(200).json(newEntry);
+// });
+
 app.post('/anotherapi', (req, res) => {
   const { url, serviceName, servicePrice } = req.body;
   const newEntry = new Service({ url, serviceName, servicePrice });
-  newEntry.save();
-  res.status(200).json(newEntry);
+  newEntry.save()
+    .then(() => res.status(200).json(newEntry))
+    .catch(err => res.status(500).json({ error: err.message }));
 });
+
 
 app.put("/anotherapi/:id", async (req, res) => {
   let _id = req.params.id;
