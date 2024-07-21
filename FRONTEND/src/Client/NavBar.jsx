@@ -15,15 +15,15 @@ function NavBar() {
   </div>
   <div className="navbar-right">
     <ul className="nav-links">
-      <li>
-        <link href="/aboutus">About Us</link>
-      </li>
-      <li>
-        <a href="/contact">Contact</a>
-      </li>
-      <li>
-        <a href="/Login">Login</a>
-      </li>
+    <li>
+          <Link to="/Aboutus">About Us</Link>
+        </li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
     </ul>
   </div>
   

@@ -188,33 +188,71 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// app.post('/bookservice', async (req, res) => {
+//   try {
+//     const { email, mobile, serviceId } = req.body;
+//     console.log(serviceId);
+//     const service = await Service.findById(serviceId);
+//     if (!service) {
+//       return res.status(404).json({ message: "Service not found" });
+//     } 
+
+//     const customer = await Customers.findOneAndUpdate(
+//       { email, mobile },
+//       {
+//         $set: {
+//           vehiclenum: service.vehiclenum,
+//           vehiclemodel: service.vehiclemodel,
+//           customername: service.customername,
+//           status: "Booked",
+//           amount: service.servicePrice,
+//         }
+//       },
+//       { new: true, upsert: true }
+//     );
+
+//     res.status(200).json(customer);
+//   } catch (error) {
+//     res.status(400).json({ message: "Service booking failed", error });
+//   }
+// });
 app.post('/bookservice', async (req, res) => {
   try {
     const { email, mobile, serviceId } = req.body;
-    const service = await Service.findById(serviceId);
-    if (!service) {
-      return res.status(404).json({ message: "Service not found" });
-    }
+    console.log(serviceId);
+    
+    // const service = await Service.findById(serviceId);
+    // if (!service) {
+    //   return res.status(404).json({ message: "Service not found" });
+    // }
 
-    const customer = await Customers.findOneAndUpdate(
-      { email, mobile },
-      {
-        $set: {
-          vehiclenum: service.vehiclenum,
-          vehiclemodel: service.vehiclemodel,
-          customername: service.customername,
-          status: "Booked",
-          amount: service.servicePrice,
-        }
-      },
-      { new: true, upsert: true }
-    );
+    // Assume new customer details are coming from the booking request
+    const newCustomerDetails = {
+      vehiclenum: "TN01AA11111",
+      vehiclemodel: "MAX1100",
+      customername: "Bro Asp",
+      mobile: email,
+      email: "cdg@gmail.com",
+      status: "Booked",
+      amount: 8000,
+      complaint: "Tyre Change", // Assume this comes from booking
+      date: "01/03/2024"
+    };
+
+    const customer =new Customers(newCustomerDetails);
+    await  customer.save();
+    //  await Customers.findOneAndUpdate(
+    //   { email, mobile },
+    //   { $set: newCustomerDetails },
+    //   { new: true, upsert: true }
+    // );
 
     res.status(200).json(customer);
   } catch (error) {
     res.status(400).json({ message: "Service booking failed", error });
   }
 });
+
 
 app.listen(3003, () => {
   console.log('Server is running on port 3003');
