@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
   const [vehiclenum, setVehiclenum] = useState("");
@@ -48,7 +49,7 @@ const SignUp = () => {
         <input type="text" value={mobile} onChange={(e) => setMobile(e.target.value)} placeholder='Mobile Number' required />
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' required />
         <input type="text" value={status} onChange={(e) => setStatus(e.target.value)} placeholder='Status' required />
-        <button type="submit" >Sign Up</button>
+        <Link to='/login'><button type="submit" >Sign Up</button></Link>
       </form>
     </div>
   );

@@ -56,6 +56,7 @@ import React from 'react';
 import '../Client/LandingPage.css';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Link } from 'react-router-dom';
 
 function LandingPage() {
   return (
@@ -97,7 +98,7 @@ function LandingPage() {
             friendly service, and making things easy for you with flexible scheduling options. Choose Piston Doc, 
             and ride with peace of mind knowing your bike is in great hands.
           </p>
-          <button className="book-now">Book Now</button>
+          <Link to='/login'><button className="book-now">Book Now</button></Link>
         </div>
       </div>
     </>
