@@ -26,7 +26,7 @@ const AddService = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="add-new">
+      <form onSubmit={handleSubmit} className="add-n">
         <h2>Adding New Service</h2>
         <input
           className="add-input"
@@ -49,7 +49,7 @@ const AddService = () => {
           onChange={(e) => setServicePrice(e.target.value)}
           placeholder="Enter the service price here..."
         />
-        <button className="add-input-btn" type="submit">
+        <button className="add-btn" type="submit">
           Add Service
         </button>
       </form>
