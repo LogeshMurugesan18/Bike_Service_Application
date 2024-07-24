@@ -1,67 +1,9 @@
-// var express=require('express')
-// var app=express();
-// var cors=require('cors');
-// app.use(cors());
-// const mongoose=require("mongoose");
-// mongoose.connect('mongodb://localhost:27017/Bike-Service-Spplication').then(()=>{
-//   console.log("Connected to mongo db");
-// })
-// const CustomerSchema =  new mongoose.Schema({
-//   vehiclenum:{type:String,required:true},
-//   vehiclemodel:{type: String, required:true},
-//   customername:{type:String,required:true},
-//   mobile:{type: String, required:true},
-//   email:{type:String,required:true},
-//   complaint:{type: String, required:true},
-//   date:{type: String, required:true},
-//   status:{type: String, required:true},
-//   amount:{type:String,required:true},
-// });
-// let Customers =mongoose.model("Customers",CustomerSchema)
-// app.use(express.json());
-
-// app.get('/data', async function(req,res){
-
-//   const cust=await Customers.find();
-//   res.json(cust);
-  
-// });
-// app.post('/api',(req,res)=>{
-//    const {vehiclenum,vehiclemodel,customername,mobile,email,complaint,date,status,amount}=req.body;
-//   const newcust=new Customers({vehiclenum,vehiclemodel,customername,mobile,email,complaint,date,status,amount});
-//   newcust.save();
-//   res.status(200).json(newcust);
-// })
-
-// app.put("/api/:id",async(req,res)=>{
-//   let _id=req.params.id;
-//   const custToUpdate =await Customers.findByIdAndUpdate(_id,req.body);
-//   if(!custToUpdate) return res.status(404).send("No customer found with the id");
-//   res.status(200).send("Content modified");
-// })
-
-
-// app.delete("/api/:id",async(req,res)=>{
-//   let _id=req.params.id;
-//   const custToDelete=await Customers.findByIdAndDelete(_id,req.body);
-//   if(!custToDelete) return res.status(404).send("No data to delete in this id");
-//   res.status(200).send("Content Deleted");
-// })
-
-// app.listen(3003,()=>{
-//   console.log('server is running on port 3003');
-// })
-
-
 var express = require('express');
 var app = express();
 var cors = require('cors');
 app.use(cors());
 const mongoose = require('mongoose');
 
-// mongoose.connect('mongodb://localhost:27017/Bike-Service-Spplication').then(() => {
-//   console.log("Connected to MongoDB");
-// });
 mongoose.connect('mongodb://localhost:27017/Bike-Service-Application', {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -188,45 +130,13 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// app.post('/bookservice', async (req, res) => {
-//   try {
-//     const { email, mobile, serviceId } = req.body;
-//     console.log(serviceId);
-//     const service = await Service.findById(serviceId);
-//     if (!service) {
-//       return res.status(404).json({ message: "Service not found" });
-//     } 
 
-//     const customer = await Customers.findOneAndUpdate(
-//       { email, mobile },
-//       {
-//         $set: {
-//           vehiclenum: service.vehiclenum,
-//           vehiclemodel: service.vehiclemodel,
-//           customername: service.customername,
-//           status: "Booked",
-//           amount: service.servicePrice,
-//         }
-//       },
-//       { new: true, upsert: true }
-//     );
-
-//     res.status(200).json(customer);
-//   } catch (error) {
-//     res.status(400).json({ message: "Service booking failed", error });
-//   }
-// });
 app.post('/bookservice', async (req, res) => {
   try {
     const { email, mobile, serviceId } = req.body;
     console.log(serviceId);
     
-    // const service = await Service.findById(serviceId);
-    // if (!service) {
-    //   return res.status(404).json({ message: "Service not found" });
-    // }
 
-    // Assume new customer details are coming from the booking request
     const newCustomerDetails = {
       vehiclenum: "TN01AA11111",
       vehiclemodel: "MAX1100",
@@ -235,17 +145,13 @@ app.post('/bookservice', async (req, res) => {
       email: "cdg@gmail.com",
       status: "Booked",
       amount: 8000,
-      complaint: "Tyre Change", // Assume this comes from booking
+      complaint: "Tyre Change", 
       date: "01/03/2024"
     };
 
     const customer =new Customers(newCustomerDetails);
     await  customer.save();
-    //  await Customers.findOneAndUpdate(
-    //   { email, mobile },
-    //   { $set: newCustomerDetails },
-    //   { new: true, upsert: true }
-    // );
+  
 
     res.status(200).json(customer);
   } catch (error) {
