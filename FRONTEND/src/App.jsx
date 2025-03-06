@@ -42,7 +42,7 @@ function App() {
     <Route path="/services" element={<ServicePage loggedInUser={loggedInUser} customerdetails={customers} />} />
     <Route path='signup'Component={SignUp}/>
     </Routes>
-    <Footer/>
+    <Footer/> 
     
     </Router>
   )

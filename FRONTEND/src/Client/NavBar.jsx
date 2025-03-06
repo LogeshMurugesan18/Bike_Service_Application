@@ -6,7 +6,7 @@ function NavBar() {
   <div className="navbar-left">
   <a href="/" className="name">
           <img 
-            src="https://static.vecteezy.com/system/resources/previews/009/385/066/non_2x/engine-piston-clipart-design-illustration-free-png.png" 
+            src="https://w7.pngwing.com/pngs/536/580/png-transparent-pistons-thumbnail.png" 
             alt="Piston Doc Logo" 
             className="logo" 
           />

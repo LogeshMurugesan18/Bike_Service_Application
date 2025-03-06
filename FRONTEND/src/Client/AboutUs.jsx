@@ -22,7 +22,7 @@ const AboutUs = () => {
             At Piston Doc, we offer a wide range of services, including general repairs, scheduled maintenance, and specialized diagnostics. Our team of experienced technicians uses the latest tools and technology to ensure your vehicle is in perfect condition.
           </p>
         </div>
-        <img src="https://deshibiker.com/wp-content/uploads/2020/11/mechanics-500x334.jpg" alt="Our History" className="about-image" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzM84EYTOEmA0MftrDzzG8TmZ3rAyeDB21xg&s" alt="Our History" className="about-image" />
       </div>
 
       <div className="about-section">
